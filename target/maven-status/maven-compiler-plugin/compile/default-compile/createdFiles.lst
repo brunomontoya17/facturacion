@@ -1,0 +1,16 @@
+com\montoy\facturacion\model\SubRubro.class
+com\montoy\facturacion\services\implementations\SubRubroServiceImpl.class
+com\montoy\facturacion\model\Producto.class
+com\montoy\facturacion\controllers\RubroController.class
+com\montoy\facturacion\controllers\SubRubroController.class
+com\montoy\facturacion\services\implementations\RubroServiceImpl.class
+com\montoy\facturacion\controllers\ProductoController.class
+com\montoy\facturacion\services\SubRubroService.class
+com\montoy\facturacion\FacturacionSimpleBackendApplication.class
+com\montoy\facturacion\model\Rubro.class
+com\montoy\facturacion\repositories\ProductoRepository.class
+com\montoy\facturacion\services\RubroService.class
+com\montoy\facturacion\repositories\RubroRepository.class
+com\montoy\facturacion\repositories\SubRubroRepository.class
+com\montoy\facturacion\services\implementations\ProductoServiceImpl.class
+com\montoy\facturacion\services\ProductoService.class
