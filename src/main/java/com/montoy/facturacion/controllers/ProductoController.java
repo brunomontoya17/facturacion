@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,6 +35,37 @@ public class ProductoController
         }
     }
 
+    @GetMapping("/per100page/{Page}")
+    public ResponseEntity return100ProductosxPagina(@PathVariable Integer Page)
+    {
+        try {
+            return ResponseEntity.ok(productoService.retrieve100perPage(Page));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+    @GetMapping("/per50page/{Page}")
+    public ResponseEntity return50ProductosxPagina(@PathVariable Integer Page)
+    {
+        try {
+            return ResponseEntity.ok(productoService.retrieve50perPage(Page));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/per25page/{Page}")
+    public ResponseEntity return25ProductosxPagina(@PathVariable Integer Page)
+    {
+        try {
+            return ResponseEntity.ok(productoService.retrieve25perPage(Page));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
     @GetMapping("/{ID}")
     public ResponseEntity returnProductoByID(@PathVariable Long ID)
     {

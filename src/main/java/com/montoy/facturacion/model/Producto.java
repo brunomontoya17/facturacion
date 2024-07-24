@@ -39,9 +39,10 @@ public class Producto
     @Column(columnDefinition = "decimal unsigned")
     private Double precio;
     @ManyToOne
+    @JoinColumn(name = "rubro_id")
     private Rubro rubro;
     @ManyToOne
-    @JoinColumn(name="marcaId")
+    @JoinColumn(name="marca_id")
     private Marca marca;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -74,6 +75,7 @@ public class Producto
         return (Objects.equals(this.getNombreProducto(), compare.getNombreProducto()) &&
                 Objects.equals(this.getDescripcion(), compare.getDescripcion()) &&
                 (!Objects.isNull(this.getMarca()) && !Objects.isNull(compare.getMarca()) &&
-                        Objects.equals(this.getMarca().getIdMarca(), compare.getMarca().getIdMarca())));
+                        Objects.equals(this.getMarca().getIdMarca(), compare.getMarca().getIdMarca())) &&
+                Objects.equals(this.getRubro().getIdRubro(),compare.getRubro().getIdRubro()));
     }
 }

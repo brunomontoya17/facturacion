@@ -7,6 +7,8 @@ import com.montoy.facturacion.repositories.ProductoRepository;
 import com.montoy.facturacion.repositories.RubroRepository;
 import com.montoy.facturacion.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +36,21 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Producto retrieveByBarCode(String barcode) {
         return productoRepo.findByCodigoDeBarras(barcode).orElse(null);
+    }
+
+    @Override
+    public Page<Producto> retrieve100perPage(Integer page) {
+        return productoRepo.findAll(PageRequest.of(page-1,100));
+    }
+
+    @Override
+    public Page<Producto> retrieve50perPage(Integer page) {
+        return productoRepo.findAll(PageRequest.of(page-1,50));
+    }
+
+    @Override
+    public Page<Producto> retrieve25perPage(Integer page) {
+        return productoRepo.findAll(PageRequest.of(page-1,25));
     }
 
     @Override

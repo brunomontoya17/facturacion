@@ -15,11 +15,11 @@ public interface ProductoXRubroMapper
             "LEFT JOIN rubros as R2 " +
             "ON prod.rubro_id=R2.id " +
             "LEFT JOIN rubros as R3 " +
-            "ON R2.id=R3.id " +
+            "ON R2.rubro_id=R3.id " +
             "LEFT JOIN rubros as R4 " +
-            "ON R3.id=R4.id " +
+            "ON R3.rubro_id=R4.id " +
             "LEFT JOIN rubros as R5 " +
-            "ON R4.id=R5.id " +
+            "ON R4.rubro_id=R5.id " +
             "WHERE prod.rubro_id=#{rubro_id} OR " +
             "R2.id=#{rubro_id} OR " +
             "R3.id=#{rubro_id} OR " +

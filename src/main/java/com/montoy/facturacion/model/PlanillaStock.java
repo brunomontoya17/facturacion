@@ -27,17 +27,17 @@ public class PlanillaStock
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlanillaStock;
 
-    @Column (columnDefinition = "decimal default 0.0")
+    @Column (columnDefinition = "decimal")
     private Double cantidad_stock;
-    @Column (columnDefinition = "decimal default 0.0")
+    @Column (columnDefinition = "decimal")
     private Double cantidad_critica;
 
-    @Column(name="fecha_ultima_entrada",columnDefinition = "datetime default LOCALTIME()")
+    @Column(name="fecha_ultima_entrada")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha_ultima_entrada;
-    @Column (columnDefinition = "decimal default 0.0")
+    @Column (columnDefinition = "decimal")
     private Double cantidad_ultima_entrada;
 
     @Column(name="fecha_ultima_salida")
@@ -45,15 +45,15 @@ public class PlanillaStock
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha_ultima_salida;
-    @Column (columnDefinition = "decimal default 0.0")
+    @Column (columnDefinition = "decimal")
     private Double cantidad_ultima_salida;
 
-    @Column(name="fecha_ultimo_ajuste",columnDefinition = "datetime default LOCALTIME()")
+    @Column(name="fecha_ultimo_ajuste")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fecha_ultimo_ajuste;
-    @Column (columnDefinition = "decimal default 0.0")
+    @Column (columnDefinition = "decimal")
     private Double diferencia_ajuste;
 
     @OneToOne(mappedBy = "planillaStock")
