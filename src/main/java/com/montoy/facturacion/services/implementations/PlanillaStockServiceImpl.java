@@ -12,7 +12,12 @@ import java.util.List;
 public class PlanillaStockServiceImpl implements PlanillaStockService {
 
     @Autowired
-    PlanillaStockRepository planillaRepo;
+    private PlanillaStockRepository planillaRepo;
+
+    @Autowired
+    public PlanillaStockServiceImpl (PlanillaStockRepository planillaStockRepository) {
+        this.planillaRepo = planillaStockRepository;
+    }
     @Override
     public List<PlanillaStock> retrievePlanillas() {
         return planillaRepo.findAll();

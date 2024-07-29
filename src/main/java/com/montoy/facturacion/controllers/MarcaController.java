@@ -4,6 +4,7 @@ import com.montoy.facturacion.model.Marca;
 import com.montoy.facturacion.model.Rubro;
 import com.montoy.facturacion.services.implementations.MarcaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,39 @@ public class MarcaController
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
 
+    }
+
+    @GetMapping("/per50page/{PAGE}")
+    public ResponseEntity return50marcasPerPage(@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(marcaService.retrieve50perPage(PAGE));
+        } catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/per25page/{PAGE}")
+    public ResponseEntity return25marcasPerPage(@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(marcaService.retrieve25perPage(PAGE));
+        } catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/per10page/{PAGE}")
+    public ResponseEntity return10marcasPerPage(@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(marcaService.retrieve10perPage(PAGE));
+        } catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
     }
 
     @PostMapping("/insert")

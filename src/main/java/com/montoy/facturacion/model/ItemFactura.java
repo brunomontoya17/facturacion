@@ -21,13 +21,11 @@ public class ItemFactura implements ItemMovimientoStock
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idItemFactura;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "producto_id")
     private Producto producto;
     private String nombreProducto;
-    @Column(columnDefinition = "decimal")
     private Double precio;
-    @Column(columnDefinition = "decimal")
     private Double cantidad;
     @ManyToOne
     @JoinColumn(name = "factura_id",nullable = false)

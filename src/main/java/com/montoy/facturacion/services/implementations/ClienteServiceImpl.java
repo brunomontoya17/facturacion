@@ -16,7 +16,12 @@ import java.util.Arrays;
 public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
-    ClienteRepository clienteRepo;
+    private ClienteRepository clienteRepo;
+
+    @Autowired
+    public ClienteServiceImpl (ClienteRepository clienteRepository) {
+        this.clienteRepo = clienteRepository;
+    }
     @Override
     public ClienteList retrieveClientes() {
         ClienteList clientes = new ClienteList();

@@ -13,7 +13,13 @@ import org.springframework.stereotype.Service;
 public class ProveedorServiceImpl implements ProveedorService {
 
     @Autowired
-    ProveedorRepository proveedorRepo;
+    private ProveedorRepository proveedorRepo;
+
+    @Autowired
+    public ProveedorServiceImpl (ProveedorRepository proveedorRepository) {
+        this.proveedorRepo = proveedorRepository;
+    }
+
     @Override
     public ProveedorList retrieveProveedores() {
         ProveedorList proveedores = new ProveedorList();

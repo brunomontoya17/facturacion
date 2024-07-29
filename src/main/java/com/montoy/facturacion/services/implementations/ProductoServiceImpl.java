@@ -17,11 +17,17 @@ import java.util.List;
 public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
-    ProductoRepository productoRepo;
+    private ProductoRepository productoRepo;
     @Autowired
     RubroRepository rubroRepo;
 
+    @Autowired
     ProductoXRubroMapper pxrMapper;
+
+    @Autowired
+    public ProductoServiceImpl(ProductoRepository productoRepository){
+        this.productoRepo = productoRepository;
+    }
 
     @Override
     public List<Producto> retrieveProductos() {

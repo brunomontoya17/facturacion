@@ -36,7 +36,7 @@ public class Producto
     private String nombreProducto;
     @Column(columnDefinition = "varchar(1024)")
     private String descripcion;
-    @Column(columnDefinition = "decimal unsigned")
+    @Column(columnDefinition = "decimal")
     private Double precio;
     @ManyToOne
     @JoinColumn(name = "rubro_id")

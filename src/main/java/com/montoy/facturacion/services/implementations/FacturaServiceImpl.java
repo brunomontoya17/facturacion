@@ -13,7 +13,12 @@ import java.util.List;
 public class FacturaServiceImpl implements FacturaService
 {
     @Autowired
-    FacturaRepository facturaRepo;
+    private FacturaRepository facturaRepo;
+
+    @Autowired
+    public FacturaServiceImpl (FacturaRepository facturaRepository){
+        this.facturaRepo = facturaRepository;
+    }
     @Override
     public List<Factura> retrieveFacturas() {
         return facturaRepo.findAll();

@@ -43,6 +43,36 @@ public class RubroController
 
     }
 
+    @GetMapping("/per50page/{PAGE}")
+    public ResponseEntity return50rubrosPerPage (@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(rubroService.retrieve50perPage(PAGE));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/per25page/{PAGE}")
+    public ResponseEntity return25rubrosPerPage (@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(rubroService.retrieve25perPage(PAGE));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/per10page/{PAGE}")
+    public ResponseEntity return10rubrosPerPage (@PathVariable Integer PAGE){
+        try {
+            return ResponseEntity.ok(rubroService.retrieve10perPage(PAGE));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
     @PostMapping("/insert")
     public ResponseEntity agregarRubro(@RequestBody Rubro rubro)
     {
