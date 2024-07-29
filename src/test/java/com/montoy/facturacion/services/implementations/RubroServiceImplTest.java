@@ -14,6 +14,7 @@ import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ class RubroServiceImplTest {
     void tearDown() {
     }
 
+
+
     @Test
     void retrieveRubros() {
         List<Rubro> listatest = rubroService.retrieveRubros();
@@ -58,6 +61,24 @@ class RubroServiceImplTest {
     void retrieveByID() {
         Rubro test = rubroService.retrieveByID(9L);
         Assertions.assertEquals(9L,test.getIdRubro());
+    }
+
+    @Test
+    void retrieve50perPage() {
+        Page<Rubro> paginatest = rubroService.retrieve50perPage(1);
+        Assertions.assertEquals(50,paginatest.getNumberOfElements());
+    }
+
+    @Test
+    void retrieve25perPage() {
+        Page<Rubro> paginatest = rubroService.retrieve25perPage(2);
+        Assertions.assertEquals(25,paginatest.getNumberOfElements());
+    }
+
+    @Test
+    void retrieve10perPage() {
+        Page<Rubro> paginatest = rubroService.retrieve10perPage(2);
+        Assertions.assertEquals(10,paginatest.getNumberOfElements());
     }
 
     @Test

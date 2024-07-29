@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -44,6 +45,25 @@ class MarcaServiceImplTest {
     void retrieveByID() {
         Marca test = marcaService.retrieveByID(4L);
         Assertions.assertEquals(4L,test.getIdMarca());
+    }
+
+    @Test
+    void retrieve50perPage() {
+        Page<Marca> paginatest = marcaService.retrieve50perPage(1);
+        Assertions.assertEquals(50,paginatest.getNumberOfElements());
+    }
+
+    @Test
+    void retrieve25perPage() {
+        Page<Marca> paginatest = marcaService.retrieve25perPage(2);
+        Assertions.assertEquals(25,paginatest.getNumberOfElements());
+    }
+
+    @Test
+    void retrieve10perPage() {
+        Page<Marca> paginatest = marcaService.retrieve10perPage(2);
+        Page<Marca> lastPaginaTest = marcaService.retrieve10perPage(paginatest.getTotalPages());
+        Assertions.assertTrue(lastPaginaTest.getNumberOfElements()<=10);
     }
 
     @Test
