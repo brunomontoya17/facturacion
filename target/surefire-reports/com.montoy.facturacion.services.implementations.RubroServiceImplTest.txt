@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.montoy.facturacion.services.implementations.RubroServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.391 s -- in com.montoy.facturacion.services.implementations.RubroServiceImplTest

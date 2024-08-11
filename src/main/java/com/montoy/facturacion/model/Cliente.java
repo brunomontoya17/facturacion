@@ -22,7 +22,8 @@ import lombok.Setter;
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ClientePersFisica.class, name = "fisica"),
-        @JsonSubTypes.Type(value = ClientePersJur.class, name = "juridica")
+        @JsonSubTypes.Type(value = ClientePersJur.class, name = "juridica"),
+        @JsonSubTypes.Type(value = ConsumidorFinal.class, name = "ConsumidorFinal")
 })
 
 public abstract class Cliente extends ClienteProveedor

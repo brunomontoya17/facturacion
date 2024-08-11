@@ -6,6 +6,8 @@ import com.montoy.facturacion.exceptions.ReachLevelLimitException;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -43,5 +45,11 @@ public class Rubro
         if (level>5)
             throw new ReachLevelLimitException();
         setNivelRubro(level);
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("00000");
+        return df.format(getIdRubro()) + " - " + getNombreRubro();
     }
 }

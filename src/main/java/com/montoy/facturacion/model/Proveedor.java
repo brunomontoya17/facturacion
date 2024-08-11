@@ -34,4 +34,6 @@ public abstract class Proveedor extends ClienteProveedor
     public abstract String getNombreCompleto();
 
     public abstract String getCuilDNI();
+
+
 }

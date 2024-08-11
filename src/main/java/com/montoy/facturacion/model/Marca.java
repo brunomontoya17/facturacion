@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,4 +23,10 @@ public class Marca
     @Column(name = "nombre", unique = true, nullable = false)
     private String nombreMarca;
     private String descripcion;
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("00000");
+        return df.format(getIdMarca()) + " - "  + getNombreMarca();
+    }
 }

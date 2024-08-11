@@ -39,7 +39,7 @@ public class Producto
     @Column(columnDefinition = "decimal")
     private Double precio;
     @ManyToOne
-    @JoinColumn(name = "rubro_id")
+    @JoinColumn(name = "rubro_id",nullable = false)
     private Rubro rubro;
     @ManyToOne
     @JoinColumn(name="marca_id")
@@ -77,5 +77,10 @@ public class Producto
                 (!Objects.isNull(this.getMarca()) && !Objects.isNull(compare.getMarca()) &&
                         Objects.equals(this.getMarca().getIdMarca(), compare.getMarca().getIdMarca())) &&
                 Objects.equals(this.getRubro().getIdRubro(),compare.getRubro().getIdRubro()));
+    }
+
+    @Override
+    public String toString() {
+        return getCodigoDeBarras() + " - " + getNombreProducto();
     }
 }

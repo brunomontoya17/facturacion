@@ -2,6 +2,7 @@ package com.montoy.facturacion.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class ConsumidorFinal extends Cliente{
@@ -50,5 +51,10 @@ public class ConsumidorFinal extends Cliente{
         if (Objects.isNull(instance))
             instance = new ConsumidorFinal();
         return instance;
+    }
+
+    public String toString()
+    {
+        return getNombreCompleto() + " - " + getCuilDNI();
     }
 }

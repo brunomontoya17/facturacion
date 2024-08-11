@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,5 +34,11 @@ public class ClientePersFisica extends Cliente {
     @Override
     public String getCuilDNI() {
         return DNI.toString();
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("0000");
+        return df.format(getIdCliente()) + " - " + getNombreCompleto() + " - " + getCuilDNI();
     }
 }

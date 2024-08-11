@@ -11,7 +11,7 @@ public interface FacturaService
 
     public Factura retrieveByID(Long ID);
 
-    public List<Factura> retrieveFacturasByCliente(Cliente cliente);
+    public List<Factura> retrieveFacturasByCliente(Long ID);
 
-    public void insertarFactura(Factura factura);
+    public Factura insertarFactura(Factura factura);
 }

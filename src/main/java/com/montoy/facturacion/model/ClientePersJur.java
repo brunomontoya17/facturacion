@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,5 +31,12 @@ public class ClientePersJur extends Cliente {
     @Override
     public String getCuilDNI() {
         return getCuit_cuil();
+    }
+
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("0000");
+        return df.format(getIdCliente()) + " - " + getNombreCompleto() + " - " + getCuilDNI();
     }
 }

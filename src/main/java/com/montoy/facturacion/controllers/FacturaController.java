@@ -1,5 +1,6 @@
 package com.montoy.facturacion.controllers;
 
+import com.montoy.facturacion.model.Cliente;
 import com.montoy.facturacion.model.Factura;
 import com.montoy.facturacion.services.implementations.FacturaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +43,25 @@ public class FacturaController
         }
     }
 
+    @GetMapping("/bycliente/{ID}")
+    public ResponseEntity returnFacturaByCliente(@PathVariable Long ID)
+    {
+        try {
+            return ResponseEntity.ok(facturaService.retrieveFacturasByCliente(ID));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
     @PostMapping("/generatebill")
     public ResponseEntity emitirFactura(@RequestBody Factura factura)
     {
         try {
             LocalDateTime fecha_factura = LocalDateTime.now();
             factura.setFecha(fecha_factura);
-            facturaService.insertarFactura(factura);
-            return ResponseEntity.ok(HttpStatus.OK);
+            Long IDFactura = facturaService.insertarFactura(factura).getIdFactura();
+            return ResponseEntity.ok(IDFactura);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());

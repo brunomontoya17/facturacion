@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,5 +32,11 @@ public class ProveedorPersFisica extends Proveedor {
     @Override
     public String getCuilDNI() {
         return getDNI().toString();
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df = new DecimalFormat("0000");
+        return df.format(getIdProveedor()) + " - " + getNombreCompleto() + " - " + getCuilDNI();
     }
 }
