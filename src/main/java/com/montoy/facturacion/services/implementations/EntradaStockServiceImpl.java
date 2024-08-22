@@ -9,6 +9,7 @@ import com.montoy.facturacion.repositories.PlanillaStockRepository;
 import com.montoy.facturacion.services.EntradaStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
@@ -47,6 +48,7 @@ public class EntradaStockServiceImpl implements EntradaStockService {
     }
 
     @Override
+    @Transactional(transactionManager = "transactionManager")
     public void insertarEntradaStock(EntradaStock entrada)
     {
         LocalDateTime buy = LocalDateTime.now();

@@ -1,5 +1,6 @@
 package com.montoy.facturacion.services;
 
+import com.montoy.facturacion.model.CodigoProdProv;
 import com.montoy.facturacion.model.Producto;
 import com.montoy.facturacion.model.Rubro;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,11 @@ public interface ProductoService
 
     List<Producto> retrieveByRubro(Long ID);
 
+    CodigoProdProv retrieveByProdAndProv(Long prod,Long prov);
+
+    void agregarCodigosProveedor(List<CodigoProdProv> codigos);
+
     void agregarProducto(Producto producto);
 
-    void actualizarProducto(Producto producto);
+    void actualizarProducto(Long ID, Producto producto);
 }

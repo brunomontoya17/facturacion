@@ -58,8 +58,6 @@ public class FacturaController
     public ResponseEntity emitirFactura(@RequestBody Factura factura)
     {
         try {
-            LocalDateTime fecha_factura = LocalDateTime.now();
-            factura.setFecha(fecha_factura);
             Long IDFactura = facturaService.insertarFactura(factura).getIdFactura();
             return ResponseEntity.ok(IDFactura);
         } catch (Exception ex) {

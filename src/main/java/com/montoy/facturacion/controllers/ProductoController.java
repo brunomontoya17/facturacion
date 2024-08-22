@@ -1,6 +1,7 @@
 package com.montoy.facturacion.controllers;
 
 
+import com.montoy.facturacion.model.CodigoProdProv;
 import com.montoy.facturacion.model.Producto;
 import com.montoy.facturacion.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class ProductoController
 {
     @Autowired
     ProductoService productoService;
+
 
     @GetMapping("/all")
     public ResponseEntity returnProductos()
@@ -99,17 +101,34 @@ public class ProductoController
         }
     }
 
+    @GetMapping("/codProdProv/{Prov}/{Prod}")
+    public ResponseEntity returnCodigoProdXProv(@PathVariable Long Prov,@PathVariable Long Prod)
+    {
+        try {
+            return ResponseEntity.ok(productoService.retrieveByProdAndProv(Prod,Prov));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @PostMapping("codProdProv/multi-insert")
+    public ResponseEntity insertsListsOfCodes(@RequestBody List<CodigoProdProv> codigos)
+    {
+        try {
+            productoService.agregarCodigosProveedor(codigos);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
 
     @PostMapping("/insert")
     public ResponseEntity agregarProducto(@RequestBody Producto producto)
     {
         try {
-            LocalDateTime ingreso = LocalDateTime.now();
-            producto.setFecha_creacion(ingreso);
-            if (producto.getPlanillaStock()!=null) {
-                producto.getPlanillaStock().setFecha_ultima_entrada(ingreso);
-                producto.getPlanillaStock().setFecha_ultimo_ajuste(ingreso);
-            }
             productoService.agregarProducto(producto);
             return ResponseEntity.ok(HttpStatus.OK);
         } catch (Exception ex) {
@@ -122,23 +141,13 @@ public class ProductoController
     public ResponseEntity actualizarProducto(@PathVariable Long ID,@RequestBody Producto producto)
     {
         try {
-            Producto older = productoService.retrieveByID(ID);
-            LocalDateTime modificacion = LocalDateTime.now();
-            if (!Objects.equals(older.getPrecio(), producto.getPrecio()))
-                producto.setFecha_modificacion_precio(modificacion);
-            if (!producto.sonProductosIguales(older))
-                producto.setFecha_modificacion(modificacion);
-            if(Objects.isNull(older.getPlanillaStock()) &&
-               !Objects.isNull(producto.getPlanillaStock()))
-            {
-                producto.getPlanillaStock().setFecha_ultima_entrada(modificacion);
-                producto.getPlanillaStock().setFecha_ultimo_ajuste(modificacion);
-            }
-            productoService.actualizarProducto(producto);
+            productoService.actualizarProducto(ID,producto);
             return ResponseEntity.ok(HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
     }
+
+
 }

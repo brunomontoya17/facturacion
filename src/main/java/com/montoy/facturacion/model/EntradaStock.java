@@ -38,7 +38,16 @@ public class EntradaStock
     @JoinColumn(name = "proveedorId")
     private Proveedor proveedor;
 
+    @ElementCollection(targetClass = Integer.class,fetch = FetchType.EAGER)
+    @CollectionTable(name = "margins", joinColumns = @JoinColumn(name = "entrada_id"))
+    @Column(name = "margen")
+    private List<Integer> margenes;
+
     @OneToMany(mappedBy = "entradaStock",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<ItemEntradaStock> items;
+
+    public Double getTotal() {
+        return items.stream().mapToDouble(ItemEntradaStock::getSubtotal).sum();
+    }
 }

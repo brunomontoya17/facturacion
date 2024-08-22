@@ -30,10 +30,10 @@ public class ItemEntradaStock implements ItemMovimientoStock
     private Double precio_costo;
     private Double cantidad;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumns({
-            @JoinColumn(name = "productocode_id",referencedColumnName = "producto_id"),
-            @JoinColumn(name = "proveedor_id",referencedColumnName = "proveedor_id")
+            @JoinColumn(name = "productocode_id",referencedColumnName = "producto_id",nullable = false),
+            @JoinColumn(name = "proveedor_id",referencedColumnName = "proveedor_id",nullable = false)
     })
     private CodigoProdProv codigoProdProv;
 
